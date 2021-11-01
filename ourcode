@@ -1,9 +1,22 @@
+
 import React from "react";
+/**
+ * Conventional way for importing COMPONENTS in React
+ */
 import "./App.css";
-import { Button, Card, Form } from 'react-bootstrap';
+/**
+ * Conventional way for importing LIBRARIES in React
+ */
 import 'bootstrap/dist/css/bootstrap.min.css';
+/**
+ * 1) USING PRE-BUILT COMPONENTS: 
+ * We import Buttom, Card and Form components from the React Bootstrap library.
+ * Then we can use it in the code below in the JSX areas, eg in lines 14-25. 
+ * For example we're using the Button component on line 21.
+ */
+import { Button, Card, Form } from 'react-bootstrap';
 
-
+// Renders a Todo item on the page with buttons for marking the todo item as completed and for removing it from the page
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
     <div
@@ -19,11 +32,19 @@ function Todo({ todo, index, markTodo, removeTodo }) {
   );
 }
 
+// Provides functionality for adding Todos to the list. Using a mix of HTML and JS to submit Todos
+// It keeps track of the state of the App so we have visibilty of the other Todos 
 function FormTodo({ addTodo }) {
+  /**
+   * This is an example of a Hook.
+   */
   const [value, setValue] = React.useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
+    /**
+     * If we haven't added text value for our Todo then don't do anything
+     */
     if (!value) return;
     addTodo(value);
     setValue("");
@@ -42,6 +63,7 @@ function FormTodo({ addTodo }) {
   );
 }
 
+// The overall function that renders the overall HTML page and allows for calling methods to add, mark and remove Todos
 function App() {
   const [todos, setTodos] = React.useState([
     {
@@ -51,6 +73,10 @@ function App() {
   ]);
 
   const addTodo = text => {
+     /**
+     * ARRAY DESTRUCTURING
+     * 
+     */
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
   };
@@ -92,3 +118,7 @@ function App() {
   );
 }
 export default App
+
+/**
+ * Happy Coding ;D Enjoy React 
+ */
